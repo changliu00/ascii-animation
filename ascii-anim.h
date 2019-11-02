@@ -107,6 +107,7 @@ inline void intersect_pt(Fpair& lower1, Fpair& upper1, const Fpair& lower2, cons
 }
 
 inline std::ostream& operator<<(std::ostream& out, const Fpair& pt) {
+// inline std::basic_ostream<char>& operator<<(std::basic_ostream<char>& out, const Fpair& pt) {
 	out << "(" << pt.first << ", " << pt.second << ")";
 	return out;
 }

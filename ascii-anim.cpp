@@ -256,7 +256,8 @@ void Triangle::set_lim(void) {
 
 Triangle::Triangle(const string& name, const Fpair& p0, const Fpair& p1, const Fpair& p2, bool solid, const Fpair& tlim, const Fpair& pc):
 	Obj(name, tlim, pc), p0(p0), p1(p1), p2(p2), v1(p1-p0), v2(p2-p0), v1v2(cross(v1,v2)), solid(solid) {
-	if(v1v2 == 0) throw invalid_argument(dynamic_cast<stringstream&&>(stringstream() << "degenerate triangle! (" << p0 << ", " << p1 << ", " << p2 << ")").str());
+	// if(v1v2 == 0) throw invalid_argument(dynamic_cast<stringstream&&>(stringstream() << "degenerate triangle! (" << p0 << ", " << p1 << ", " << p2 << ")").str());
+	if(v1v2 == 0) throw invalid_argument(dynamic_cast<stringstream&&>(stringstream() << "degenerate triangle! ((" << p0.first << ", " << p0.second << "), (" << p1.first << ", " << p1.second << "), (" << p2.first << ", " << p2.second << "))").str());
 	this->set_lim();
 }
 
