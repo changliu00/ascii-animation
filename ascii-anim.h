@@ -147,7 +147,8 @@ public:
 	virtual Obj* copy() const;
 	virtual Obj* copy(const std::string& name) const;
 	Obj* add_objs(std::initializer_list<Obj*> il);
-	Motion* add_motions(std::initializer_list<Motion*> il);
+	// Motion* add_motions(std::initializer_list<Motion*> il);
+	Obj* add_motions(std::initializer_list<Motion*> il);
 	void erase_obj(const std::string& key);
 	void erase_motion(int idx);
 	Obj& operator[](const std::string& key);

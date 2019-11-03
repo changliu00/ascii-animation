@@ -21,17 +21,9 @@
   ========================================================================
 ***************************************************************************/
 
-// #include <iostream>
 #include <sstream> // stringstream
 #include <stdexcept> // invalid_argument, out_of_range
-// #include <utility> // pair
-// #include <initializer_list>
 #include <cfloat> // FLT_MAX, FLT_MIN
-// #include <vector>
-// #include <string>
-// #include <functional>
-// #include <cmath> // atan2
-// #include <unistd.h>
 #include "ascii-anim.h"
 
 using namespace std;

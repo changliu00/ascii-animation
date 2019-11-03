@@ -64,8 +64,12 @@ Obj* Obj::add_objs(initializer_list<Obj*> il) {
 	return *(objs.insert(objs.end(), il));
 }
 
-Motion* Obj::add_motions(initializer_list<Motion*> il) {
-	return *(motions.insert(motions.end(), il));
+// Motion* Obj::add_motions(initializer_list<Motion*> il) {
+// 	return *(motions.insert(motions.end(), il));
+// }
+Obj* Obj::add_motions(initializer_list<Motion*> il) {
+	motions.insert(motions.end(), il);
+	return this;
 }
 
 void Obj::erase_obj(const string& key) {

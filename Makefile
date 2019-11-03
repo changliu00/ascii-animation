@@ -24,6 +24,9 @@ CFLAGS = -O3 -std=c++11 -Wno-unused-result
 bunnypiggy18.out: ascii-anim.o bunnypiggy18.o
 	$(CC) $^ -o $@ $(CFLAGS)
 
+bunnybirth18.out: ascii-anim.o bunnybirth18.o
+	$(CC) $^ -o $@ $(CFLAGS)
+
 .PHONY: clean cleanall
 clean:
 	-rm *.o
