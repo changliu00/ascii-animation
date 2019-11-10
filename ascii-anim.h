@@ -106,10 +106,28 @@ inline void intersect_pt(Fpair& lower1, Fpair& upper1, const Fpair& lower2, cons
 	if(upper2.second < upper1.second) upper1.second = upper2.second;
 }
 
+/*
+After `ostringstream() << "aaa "`:
+- On Mac, the type is still `ostringstream&&` and `<<` afterwards can only invoke API for `ostringstream&&` and cannot invoke API for `ostream&&`, unless explicitly `dynamic_cast<ostream&&>()`.
+- On Ubuntu, `<<` afterwards invokes API for `ostream&` even when APIs for `ostream&&`, `ostringstream&`, `ostringstream&&` are implemented.
+After `ss = ostringstream(); ss << "aaa "`:
+- `<<` afterwards invokes API for `ostream&` on both systems.
+*/
 inline std::ostream& operator<<(std::ostream& out, const Fpair& pt) {
-// inline std::basic_ostream<char>& operator<<(std::basic_ostream<char>& out, const Fpair& pt) {
 	out << "(" << pt.first << ", " << pt.second << ")";
 	return out;
+}
+inline std::ostream&& operator<<(std::ostream&& out, const Fpair& pt) {
+	out << pt;
+	return std::move(out);
+}
+inline std::ostringstream& operator<<(std::ostringstream& out, const Fpair& pt) {
+	dynamic_cast<std::ostream&>(out) << pt;
+	return out;
+}
+inline std::ostringstream&& operator<<(std::ostringstream&& out, const Fpair& pt) {
+	out << pt;
+	return std::move(out);
 }
 
 /***************************************************************************

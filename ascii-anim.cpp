@@ -260,8 +260,7 @@ void Triangle::set_lim(void) {
 
 Triangle::Triangle(const string& name, const Fpair& p0, const Fpair& p1, const Fpair& p2, bool solid, const Fpair& tlim, const Fpair& pc):
 	Obj(name, tlim, pc), p0(p0), p1(p1), p2(p2), v1(p1-p0), v2(p2-p0), v1v2(cross(v1,v2)), solid(solid) {
-	// if(v1v2 == 0) throw invalid_argument(dynamic_cast<stringstream&&>(stringstream() << "degenerate triangle! (" << p0 << ", " << p1 << ", " << p2 << ")").str());
-	if(v1v2 == 0) throw invalid_argument(dynamic_cast<stringstream&&>(stringstream() << "degenerate triangle! ((" << p0.first << ", " << p0.second << "), (" << p1.first << ", " << p1.second << "), (" << p2.first << ", " << p2.second << "))").str());
+	if(v1v2 == 0) throw invalid_argument(dynamic_cast<ostringstream&&>(ostringstream() << "degenerate triangle! (" << p0 << ", " << p1 << ", " << p2 << ")").str());
 	this->set_lim();
 }
 
@@ -393,7 +392,7 @@ void Ellipse::set_lim(void) {
 
 Ellipse::Ellipse(const string& name, const Fpair& pc0, float a, float b, float angle, bool solid, const Fpair& tlim, const Fpair& pc):
 	Obj(name, tlim, pc), pc0(pc0), v(cos(angle), sin(angle)), asq(a*a), bsq(b*b), angle(angle), solid(solid) {
-	if(asq == 0 || bsq == 0) throw invalid_argument(dynamic_cast<stringstream&&>(stringstream() << "\"a\" and \"b\" cannot be zero!").str());
+	if(asq == 0 || bsq == 0) throw invalid_argument(dynamic_cast<ostringstream&&>(ostringstream() << "\"a\" and \"b\" cannot be zero!").str());
 	this->set_lim();
 }
 
@@ -444,10 +443,10 @@ Ellipse* Ellipse::scale(float rate, const Fpair& ps) {
 
 EllArc::EllArc(const string& name, const Fpair& pc0, float a, float b, float angle, float width, float anglim1, float anglim2, bool solid, const Fpair& tlim, const Fpair& pc):
 	Ellipse(name, pc0, a, b, angle, solid, tlim, pc), width(width), anglim1(anglim1), anglim2(anglim2) {
-	if(width <= 0 || width > 1) throw invalid_argument(dynamic_cast<stringstream&&>(stringstream() << "\"width\" (" << width << ") should be in the range (0, 1]!").str());
-	if(anglim1 >= anglim2) throw invalid_argument(dynamic_cast<stringstream&&>(stringstream() << "\"anglim1\" (" << anglim1 << ") should be less than \"anglim2\" (" << anglim2 << ")!").str());
-	if(anglim1 > pi || anglim1 < -pi) throw invalid_argument(dynamic_cast<stringstream&&>(stringstream() << "\"anglim1\" (" << anglim1 << ") should be in the range [-\\pi, \\pi]!").str());
-	if(anglim2 > pi || anglim2 < -pi) throw invalid_argument(dynamic_cast<stringstream&&>(stringstream() << "\"anglim2\" (" << anglim2 << ") should be in the range [-\\pi, \\pi]!").str());
+	if(width <= 0 || width > 1) throw invalid_argument(dynamic_cast<ostringstream&&>(ostringstream() << "\"width\" (" << width << ") should be in the range (0, 1]!").str());
+	if(anglim1 >= anglim2) throw invalid_argument(dynamic_cast<ostringstream&&>(ostringstream() << "\"anglim1\" (" << anglim1 << ") should be less than \"anglim2\" (" << anglim2 << ")!").str());
+	if(anglim1 > pi || anglim1 < -pi) throw invalid_argument(dynamic_cast<ostringstream&&>(ostringstream() << "\"anglim1\" (" << anglim1 << ") should be in the range [-\\pi, \\pi]!").str());
+	if(anglim2 > pi || anglim2 < -pi) throw invalid_argument(dynamic_cast<ostringstream&&>(ostringstream() << "\"anglim2\" (" << anglim2 << ") should be in the range [-\\pi, \\pi]!").str());
 }
 
 EllArc::EllArc(const string& name, const Fpair& pc0, float a, float b, float angle, float width, float anglim1, float anglim2, bool solid, const Fpair& tlim):

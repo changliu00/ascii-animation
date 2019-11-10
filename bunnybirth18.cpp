@@ -125,7 +125,7 @@ int main()
 	vector<Fpair> params(axes.size());
 	for(int i=0; i<axes.size(); ++i) {
 		float tmp1 = pow(anchs[i].first - axes[i], 2), tmp2 = pow(anchs[i+1].first - axes[i], 2);
-		if(tmp1 == tmp2) throw invalid_argument(dynamic_cast<stringstream&&>(stringstream() << "cannot determine parabola with points (" << anchs[i].first << ", " << anchs[i].second << "), (" << anchs[i+1].first << ", " << anchs[i+1].second << ") and symmetric axis x = " << axes[i] << "!").str());
+		if(tmp1 == tmp2) throw invalid_argument(dynamic_cast<ostringstream&&>(ostringstream() << "cannot determine parabola with points " << anchs[i] << ", " << anchs[i+1] << " and symmetric axis x = " << axes[i] << "!").str());
 		params[i].first = (anchs[i].second-anchs[i+1].second) / (tmp1 - tmp2);
 		params[i].second = (tmp1*anchs[i+1].second - tmp2*anchs[i].second) / (tmp1 - tmp2);
 	}
