@@ -15,7 +15,7 @@
 CC = g++
 CFLAGS = -O3 -std=c++11 -Wno-unused-result
 
-all: bunnypiggy18.out bunnybirth18.out bunnypiggy20.out
+all: bunnypiggy18.out bunnybirth18.out bunnypiggy20.out oct13.out
 
 %.o: %.cpp ascii-anim.h
 	$(CC) -c $< -o $@ $(CFLAGS)
@@ -30,6 +30,9 @@ bunnybirth18.out: ascii-anim.o bunnybirth18.o
 	$(CC) $^ -o $@ $(CFLAGS)
 
 bunnypiggy20.out: ascii-anim.o bunnypiggy20.o
+	$(CC) $^ -o $@ $(CFLAGS)
+
+oct13.out: ascii-anim.o oct13.o
 	$(CC) $^ -o $@ $(CFLAGS)
 
 clean:

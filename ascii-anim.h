@@ -14,9 +14,9 @@
   |  Date:    01/28/2018                                                 |
   |                                                                      |
   |  Notes:                                                              |
-  |  * The frame is a right-handed system. The center is (0,0). The      |
-  |    verticle bound is [-1, 1], and the horizontal bound is determined |
-  |    by the aspect ratio (currently 1.856).                            |
+  |  * The frame is a right-handed system. The frame center is (0,0).    |
+  |    The verticle bound is [-1, 1], and the horizontal bound is        |
+  |    determined by the aspect ratio (currently 1.856).                 |
   |  * Do not use any copy constructors except "new ClassName(*this)"!   |
   ========================================================================
 ***************************************************************************/
@@ -87,9 +87,9 @@ inline void rot_pt_pt(std::initializer_list<Fpair*> il, const Fpair& p0, float d
 inline Fpair& scl_pt_pt(Fpair& pt, const Fpair& p0, float rate) {
 	return pt = rate*pt + (1-rate)*p0;
 }
-inline void scl_pt_pt(std::initializer_list<Fpair*> il, Fpair p0, float rate) {
-	p0 *= (1-rate);
-	for(auto ppt: il) (*ppt) = rate*(*ppt) + p0;
+inline void scl_pt_pt(std::initializer_list<Fpair*> il, const Fpair& p0, float rate) {
+	Fpair pscl = (1-rate) * p0;
+	for(auto ppt: il) (*ppt) = rate*(*ppt) + pscl;
 }
 
 inline void union_pt(Fpair& lower1, Fpair& upper1, const Fpair& lower2, const Fpair& upper2) {
